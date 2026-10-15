@@ -12,7 +12,7 @@ A standalone, new hackathon build created on 14 October 2026. This project index
 
 ## Current readiness
 
-Local build and unit/browser tests pass. RPC chain check and empty live query pass. Public MIT source and [judge-facing app](https://arkiv-receipt-log.vercel.app/) are live. Three synthetic receipts were seeded and read back on Tiramisu on Oct 15. The 2:02 captioned live demo is in `public/demo.mp4`; public transaction evidence is in `public/evidence.json`. Owner review and registration/submission are still pending.
+Local build and unit/browser tests pass. RPC chain check and empty live query pass. Public MIT source and [judge-facing app](https://arkiv-receipt-log.vercel.app/) are live. Three synthetic receipts were seeded and read back on Tiramisu on Oct 15. The 2:02 captioned live demo is in `public/arkiv-demo.mp4`; public transaction evidence is in `public/evidence.json`. Owner review and registration/submission are still pending.
 
 ## Reproduce
 
