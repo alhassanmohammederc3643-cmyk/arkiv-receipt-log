@@ -12,7 +12,7 @@ A standalone, new hackathon build created on 14 October 2026. This project index
 
 ## Current readiness
 
-Local build and unit/browser tests pass. RPC chain check and empty live query pass. **On-chain seeding, public repo, public deployment and the final recorded video are not complete yet.** Do not submit this state. `public/evidence.json` will only exist after a successful seed transaction.
+Local build and unit/browser tests pass. RPC chain check and empty live query pass. Public MIT source and [judge-facing app](https://arkiv-receipt-log.vercel.app/) are live. **On-chain seeding and the final recorded video are not complete yet.** Do not submit this state. `public/evidence.json` will only exist after a successful seed transaction.
 
 ## Reproduce
 
