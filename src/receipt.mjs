@@ -1,0 +1,6 @@
+import { z } from 'zod';
+import { keccak256, toHex } from 'viem';
+export const Receipt = z.object({version:z.literal(1),kind:z.literal('synthetic_x402_receipt'),network:z.literal('testnet'),requestId:z.string().regex(/^demo-[a-z0-9-]{1,70}$/),service:z.enum(['image-generation','compliance-check']),amountMicrounits:z.number().int().min(1).max(1000000),currency:z.literal('USDC'),status:z.literal('simulated'),createdAt:z.string().datetime(),responseDigest:z.string().regex(/^0x[0-9a-f]{64}$/),note:z.literal('Synthetic demo. No USDC transfer or real revenue.')}).strict();
+export function canonicalReceipt(receipt){const r=Receipt.parse(receipt);return JSON.stringify(Object.fromEntries(Object.keys(r).sort().map(k=>[k,r[k]])));}
+export function receiptHash(receipt){return keccak256(toHex(canonicalReceipt(receipt)));}
+export function syntheticReceipt(i=1, service='image-generation') {return Receipt.parse({version:1,kind:'synthetic_x402_receipt',network:'testnet',requestId:`demo-${service}-${i}`,service,amountMicrounits:service==='image-generation'?50000:10000,currency:'USDC',status:'simulated',createdAt:new Date().toISOString(),responseDigest:keccak256(toHex(`synthetic-response-${service}-${i}`)),note:'Synthetic demo. No USDC transfer or real revenue.'});}

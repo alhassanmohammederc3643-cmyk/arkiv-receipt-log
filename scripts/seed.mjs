@@ -1,0 +1,13 @@
+import {createWalletClient,createPublicClient,ExpirationTime,jsonToPayload} from '@arkiv-network/sdk';
+import {tiramisu} from '@arkiv-network/sdk/chains';import {http} from 'viem';import {privateKeyToAccount} from 'viem/accounts';import fs from 'node:fs';import {syntheticReceipt,receiptHash} from '../src/receipt.mjs';
+const project='arkiv-x402-receipt-log-2026-v1';
+if(!process.env.ARKIV_PRIVATE_KEY)throw new Error('ARKIV_PRIVATE_KEY is required in local .env, never commit it');
+const account=privateKeyToAccount(process.env.ARKIV_PRIVATE_KEY);
+const pub=createPublicClient({chain:tiramisu,transport:http()});const wallet=createWalletClient({account,chain:tiramisu,transport:http()});
+if(await pub.getChainId()!==7738577)throw new Error('Refusing non-Tiramisu network');
+console.log('Publisher',account.address,'test GLM',String(await pub.getBalance({address:account.address})));
+const receipts=[syntheticReceipt(1),syntheticReceipt(2,'compliance-check'),syntheticReceipt(3)];
+const creates=receipts.map(r=>({payload:jsonToPayload(r),contentType:'application/json',attributes:{project,entity_type:'receipt',service:r.service,amount_microunits:r.amountMicrounits,network:'testnet',status:'simulated',receipt_hash:receiptHash(r)},expires:ExpirationTime.fromDays(21),flags:{readonly:true,permissionlessExtension:true}}));
+const result=await wallet.executeBatch({creates});
+fs.writeFileSync('public/evidence.json',JSON.stringify({chainId:7738577,network:'Tiramisu testnet',creator:account.address,seededAt:new Date().toISOString(),result},(_,v)=>typeof v==='bigint'?v.toString():v,2));
+console.log('Evidence saved to public/evidence.json');console.log(JSON.stringify(result,(_,v)=>typeof v==='bigint'?v.toString():v));
