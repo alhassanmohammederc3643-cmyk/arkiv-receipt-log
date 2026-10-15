@@ -12,7 +12,7 @@ A standalone, new hackathon build created on 14 October 2026. This project index
 
 ## Current readiness
 
-Local build and unit/browser tests pass. RPC chain check and empty live query pass. Public MIT source and [judge-facing app](https://arkiv-receipt-log.vercel.app/) are live. **On-chain seeding and the final recorded video are not complete yet.** Do not submit this state. `public/evidence.json` will only exist after a successful seed transaction.
+Local build and unit/browser tests pass. RPC chain check and empty live query pass. Public MIT source and [judge-facing app](https://arkiv-receipt-log.vercel.app/) are live. Three synthetic receipts were seeded and read back on Tiramisu on Oct 15. The 2:02 captioned live demo is in `public/demo.mp4`; public transaction evidence is in `public/evidence.json`. Owner review and registration/submission are still pending.
 
 ## Reproduce
 
@@ -44,7 +44,7 @@ npm run query
 - `$creator` proves authorship, not honest authorship. An approved publisher could lie.
 - Schema validation and a hash match establish data consistency, not USDC payment settlement.
 - Records are created read-only. We do not call patch/delete or claim perpetual storage.
-- Permissionless extension is enabled; the UI does not yet offer a renewal operation. Initial 21-day retention covers judging through 23 October when seeded on 14 October.
+- Permissionless extension is enabled; the UI does not yet offer a renewal operation. Initial 21-day retention covers judging through 23 October when seeded on 15 October.
 - Expiry is displayed as a block number, not an invented wall-clock timestamp.
 - Only synthetic IDs, service names and generated response hashes are stored. No email, phone number, customer data, prompts, real payments or private keys, even hashed.
 - The creator address must be changed if another team seeds its own fork. The project attribute alone is not a trust anchor.

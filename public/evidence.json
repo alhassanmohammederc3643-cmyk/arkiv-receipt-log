@@ -1,0 +1,18 @@
+{
+  "chainId": 7738577,
+  "network": "Tiramisu testnet",
+  "creator": "0x02994F5588Cbb3FC21aC3dd54fa237246C509498",
+  "seededAt": "2026-10-15T01:39:36.575Z",
+  "result": {
+    "txHash": "0x790373f9bf4902579bd3f70ed840c57443d5208b753117750f3b09e5e5e00d75",
+    "createdEntities": [
+      "0xb89fa887c5702e85a7560b25fd5eb6e4349863303f8a2f366e3bf73e25603371",
+      "0x111f1f417a8e21bf2be8f33c4ccf64af86f8625ac98b216aab50374f894abe72",
+      "0x9c8f7ab69ddd1a2d167efe90c37abb507a3605c587eca58a2235718dfbbc2b87"
+    ],
+    "patchedEntities": [],
+    "deletedEntities": [],
+    "extendedEntities": [],
+    "ownershipChanges": []
+  }
+}

@@ -22,10 +22,10 @@ Source: https://docs.arkiv.network/typescript-sdk/best-practices/
 
 ## Faucet / Hub: external wallet connection required
 
-Expected: obtain test GLM for a dedicated local publisher wallet. Actual: the public Hub faucet renders "Connect your wallet" and offers Rainbow, Base, MetaMask and WalletConnect. It does not offer an address-only claim in the observed UI. No browser wallet was connected, no claim was made, and the publisher remains unfunded. This is a setup dependency, not a claimed outage or anti-bot issue.
+Expected: obtain test GLM for a dedicated local publisher wallet. Actual: the public Hub faucet renders "Connect your wallet" and offers Rainbow, Base, MetaMask and WalletConnect. It does not offer an address-only claim in the observed UI. The browser could not claim; the owner later funded the dedicated publisher with 10 test GLM on Oct 15. This is a setup dependency, not a claimed outage or anti-bot issue.
 
 Reproduce: open https://hub.arkiv.network/faucet/ signed out, select Connect wallet and inspect options. Suggested improvement: document the supported local-development funding path alongside the faucet, including whether a CLI/address-only option exists.
 
-## Writes, flags and expiry: not yet verified
+## Writes, flags and expiry: verified Oct 15
 
-`scripts/seed.mjs` prepares a three-entity batch with 21-day expiration, read-only and permissionless-extension flags. Until a testnet write lands, these are implementation intentions, not observed on-chain behavior. Add transaction hashes, entity keys, block numbers and the successful readback here after seeding. Do not claim tested patch, delete, renewal, ownership transfer or event streaming.
+`scripts/seed.mjs` prepares a three-entity batch with 21-day expiration, read-only and permissionless-extension flags. The batch landed in transaction `0x790373f9bf4902579bd3f70ed840c57443d5208b753117750f3b09e5e5e00d75`. At block 589307, creator-filtered readback returned all three entities with `readonly: true`, `permissionlessExtension: true`, matching hashes and numeric amounts. Public evidence is in `public/evidence.json`. Expected: one atomic batch and three valid reads. Actual: exactly that. Reproduce: `npm run query`, then inspect creator, flags and payloads. The live app shows all three as Verified creator + hash. Do not claim tested patch, delete, renewal, ownership transfer or event streaming.
